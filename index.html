@@ -94,7 +94,7 @@
             display: flex;
             flex-wrap: nowrap; 
             gap: 10px;
-            justify-content: center; 
+            justify-content: flex-start; /* Changed from center to flex-start */
             margin-bottom: 30px;
             overflow-x: auto; 
             padding-bottom: 15px; 
@@ -374,23 +374,23 @@
         }
 
         .manifesto-header {
-            background-color: #dfdfe1; /* New light grey background */
-            color: #000000;          /* New black text color for general text */
+            background-color: #dfdfe1; 
+            color: #000000;          
             padding: 40px 30px;
             text-align: center;
         }
-        .manifesto-header h2 { /* Title "Agile Manifesto" */
+        .manifesto-header h2 { 
             font-size: 2.2rem;
             margin-bottom: 15px;
-            color: #000000; /* Ensure title is black */
+            color: #000000; 
         }
-        .manifesto-header p { /* Paragraphs within the header */
+        .manifesto-header p { 
             font-size: 1.1rem;
             margin-bottom: 20px;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
-            color: #000000; /* Ensure paragraphs are black */
+            color: #000000; 
         }
         .manifesto-values {
             list-style: none;
@@ -403,23 +403,23 @@
             margin-bottom: 10px;
             display: flex; 
             align-items: center;
-            color: #000000; /* Ensure list item text is black */
+            color: #000000; 
         }
         .manifesto-values li::before { 
             content: "■";
-            color: #000000; /* Square bullet to black */
+            color: #000000; 
             margin-right: 10px;
             font-size: 1.2em;
         }
         .manifesto-values strong {
-            color: #000000; /* Strong text (left side of 'over') to black */
+            color: #000000; 
             margin-right: 5px;
-            font-weight: 600; /* Make it slightly bolder */
+            font-weight: 600; 
         }
-        .manifesto-values span { /* The "over" text */
+        .manifesto-values span { 
             margin: 0 5px;
             font-style: italic;
-            color: #000000; /* Make "over" text black */
+            color: #000000; 
         }
 
         .manifesto-principles-container {
