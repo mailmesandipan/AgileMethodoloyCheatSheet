@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agile Methodologies Cheat Sheet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+        }
+
+        .navigation {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .methodology-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .methodology-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .methodology-card.hidden {
+            display: none;
+        }
+
+        .card-header {
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .method-title {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .method-icon {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .method-subtitle {
+            color: #666;
+            font-style: italic;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .section-content {
+            color: #555;
+            margin-bottom: 10px;
+        }
+        
+        .section-content a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        .section-content a:hover {
+            text-decoration: underline;
+        }
+
+        .key-points {
+            list-style: none;
+            padding: 0;
+        }
+
+        .key-points li {
+            background: #f8f9ff;
+            margin: 5px 0;
+            padding: 8px 12px;
+            border-left: 4px solid #667eea;
+            border-radius: 0 8px 8px 0;
+        }
+        .key-points li a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .key-points li a:hover {
+            text-decoration: underline;
+        }
+
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .pros, .cons {
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .pros {
+            background: rgba(34, 197, 94, 0.1);
+            border-left: 4px solid #22c55e;
+        }
+
+        .cons {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid #ef4444;
+        }
+
+        .pros h4, .cons h4 {
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .comparison-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .comparison-section-header { /* Container for title and filters */
+            margin-bottom: 20px;
+        }
+
+        .comparison-section-title {
+            background-color: #3f51b5; /* A blue similar to image */
+            color: white;
+            padding: 10px 20px; /* Adjust padding */
+            border-radius: 4px; /* Slight rounding */
+            font-size: 1.6rem; /* Adjust font size */
+            font-weight: 600;
+            margin-bottom: 20px; /* Space below title */
+            display: inline-block; /* Important for background to fit content */
+        }
+        
+        .table-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px; /* Reduced gap slightly */
+            align-items: center;
+             margin-top: 10px; /* Space between title and filters */
+        }
+
+        .table-filters select, .table-filters button {
+            padding: 8px 10px; /* Adjusted padding */
+            border-radius: 4px;
+            border: 1px solid #ccc; /* Lighter border */
+            font-size: 0.9rem;
+            background-color: #f8f9fa; /* Light grey background for selects */
+            height: 38px; /* Consistent height */
+        }
+        
+        .table-filters select {
+            min-width: 160px; /* Adjust as needed */
+            flex-grow: 1; /* Allow selects to grow */
+        }
+
+        .table-filters button {
+            background-color: #dc3545; 
+            color: white;
+            border-color: #dc3545;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            font-weight: 500;
+            flex-shrink: 0; /* Prevent button from shrinking too much */
+        }
+        .table-filters button:hover {
+            background-color: #c82333;
+        }
+        
+        .comparison-table-container {
+            overflow-x: auto;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 10px 12px; /* Slightly more padding */
+            text-align: left;
+            vertical-align: top; 
+        }
+
+        .comparison-table th {
+            background-color: #3f51b5; /* Same blue as title */
+            color: white;
+            font-weight: 600;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background-color: #f8f9fa; /* Lighter even row color */
+        }
+         .comparison-table tr.hidden-row {
+            display: none;
+        }
+        
+        .comparison-table td:first-child { 
+            font-weight: 600;
+            color: #333; 
+        }
+
+        @media (max-width: 992px) { /* Adjust breakpoint for filters to stack earlier */
+            .table-filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .table-filters select, .table-filters button {
+                width: 100%;
+                margin-bottom: 10px; /* Add margin when stacked */
+            }
+            .table-filters select:last-of-type, .table-filters button {
+                margin-bottom: 0;
+            }
+        }
+
+
+        @media (max-width: 768px) {
+            .methodology-grid {
+                grid-template-columns: 1fr;
+            }
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+            h1 { font-size: 2rem; }
+            .nav-btn { padding: 10px 16px; font-size: 14px; }
+            .comparison-table th, .comparison-table td { padding: 8px; font-size: 0.85rem; }
+            .comparison-section-title { font-size: 1.4rem; }
+        }
+         @media (max-width: 480px) {
+            .nav-btn { padding: 8px 12px; font-size: 13px; }
+             .comparison-section-title { font-size: 1.2rem; padding: 8px 15px;}
+
+        }
+
+        .footer {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 40px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Agile Methodologies Cheat Sheet</h1>
+            <p class="subtitle">Quick reference guide for 9 popular Agile frameworks & Comparison</p>
+        </header>
+
+        <div class="navigation">
+            <button class="nav-btn" data-section-type="methodologies" data-filter="all">All</button>
+            <button class="nav-btn" data-section-type="methodologies" data-filter="scrum">Scrum</button>
+            <button class="nav-btn" data-section-type="methodologies" data-filter="kanban">Kanban</button>
+            <button class="nav-btn" data-section-type="methodologies" data-filter="xp">XP</button>
+            <button class="nav-btn" data-section-type="methodologies" data-filter="lean">Lean</button>
+            <button class="nav-btn" data-section-type="methodologies" data-filter="crystal">Crystal</button>
+            <button class="nav-btn" data-section-type="methodologies" data-filter="fdd">FDD</button>
+            <button class="nav-btn" data-section-type="methodologies" data-filter="dsdm">DSDM</button>
+            <button class="nav-btn" data-section-type="methodologies" data-filter="aup">AUP</button>
+            <button class="nav-btn" data-section-type="methodologies" data-filter="safe">SAFe</button>
+            <button class="nav-btn" data-section-type="comparisonTable">Comparison Table</button>
+        </div>
+
+        <div class="methodology-grid" id="methodologyGrid">
+            <!-- Scrum -->
+            <div class="methodology-card" data-method="scrum">
+                <div class="card-header">
+                    <h2 class="method-title">
+                        <span class="method-icon">S</span>
+                        Scrum
+                    </h2>
+                    <p class="method-subtitle">Iterative framework with fixed-length sprints</p>
+                </div>
+                <div class="section"><h3 class="section-title">Key Concepts</h3><ul class="key-points"><li>Sprint cycles (1-4 weeks)</li><li>Daily standups</li><li>Sprint planning & retrospectives</li><li>Product backlog management</li></ul></div>
+                <div class="section"><h3 class="section-title">Roles</h3><p class="section-content">Product Owner, Scrum Master, Development Team</p></div>
+                <div class="section"><h3 class="section-title">Artifacts</h3><p class="section-content">Product Backlog, Sprint Backlog, Increment</p></div>
+                <div class="section"><h3 class="section-title">Learn More</h3><ul class="key-points"><li><a href="https://www.scrum.org/" target="_blank" rel="noopener noreferrer">Scrum.org</a></li><li><a href="https://www.agilealliance.org/agile101/scrum/" target="_blank" rel="noopener noreferrer">Agile Alliance - Scrum</a></li></ul></div>
+                <div class="pros-cons"><div class="pros"><h4>✅ Pros</h4><p>Clear structure, regular delivery, good for complex projects</p></div><div class="cons"><h4>❌ Cons</h4><p>Can be rigid, requires experienced team, overhead for small projects</p></div></div>
+            </div>
+            <!-- Kanban -->
+            <div class="methodology-card" data-method="kanban">
+                <div class="card-header"><h2 class="method-title"><span class="method-icon">K</span>Kanban</h2><p class="method-subtitle">Visual workflow management system</p></div>
+                <div class="section"><h3 class="section-title">Key Concepts</h3><ul class="key-points"><li>Visual board (To Do, In Progress, Done)</li><li>Work-in-progress (WIP) limits</li><li>Continuous flow</li><li>Pull-based system</li></ul></div>
+                <div class="section"><h3 class="section-title">Core Principles</h3><p class="section-content">Start with current process, pursue incremental change, respect current roles</p></div>
+                <div class="section"><h3 class="section-title">Metrics</h3><p class="section-content">Lead time, cycle time, throughput, cumulative flow</p></div>
+                <div class="section"><h3 class="section-title">Learn More</h3><ul class="key-points"><li><a href="https://kanban.university/" target="_blank" rel="noopener noreferrer">Kanban University</a></li><li><a href="https://www.atlassian.com/agile/kanban" target="_blank" rel="noopener noreferrer">Atlassian - Kanban</a></li></ul></div>
+                <div class="pros-cons"><div class="pros"><h4>✅ Pros</h4><p>Flexible, visual, easy to implement, continuous delivery</p></div><div class="cons"><h4>❌ Cons</h4><p>Less predictable, can become chaotic, requires discipline</p></div></div>
+            </div>
+            <!-- Extreme Programming -->
+            <div class="methodology-card" data-method="xp">
+                <div class="card-header"><h2 class="method-title"><span class="method-icon">XP</span>Extreme Programming</h2><p class="method-subtitle">Engineering-focused agile methodology</p></div>
+                <div class="section"><h3 class="section-title">Core Practices</h3><ul class="key-points"><li>Pair programming</li><li>Test-driven development (TDD)</li><li>Continuous integration</li><li>Refactoring</li><li>Simple design</li></ul></div>
+                <div class="section"><h3 class="section-title">Values</h3><p class="section-content">Communication, Simplicity, Feedback, Courage, Respect</p></div>
+                <div class="section"><h3 class="section-title">Planning</h3><p class="section-content">Release planning, iteration planning, user stories</p></div>
+                <div class="section"><h3 class="section-title">Learn More</h3><ul class="key-points"><li><a href="http://www.extremeprogramming.org/" target="_blank" rel="noopener noreferrer">ExtremeProgramming.org</a></li><li><a href="https://www.agilealliance.org/agile101/xp-extreme-programming/" target="_blank" rel="noopener noreferrer">Agile Alliance - XP</a></li></ul></div>
+                <div class="pros-cons"><div class="pros"><h4>✅ Pros</h4><p>High code quality, rapid feedback, customer involvement</p></div><div class="cons"><h4>❌ Cons</h4><p>Requires skilled developers, intensive, customer availability needed</p></div></div>
+            </div>
+            <!-- Lean -->
+            <div class="methodology-card" data-method="lean">
+                <div class="card-header"><h2 class="method-title"><span class="method-icon">L</span>Lean Software Development</h2><p class="method-subtitle">Eliminate waste, optimize flow</p></div>
+                <div class="section"><h3 class="section-title">7 Principles</h3><ul class="key-points"><li>Eliminate waste</li><li>Amplify learning</li><li>Decide as late as possible</li><li>Deliver as fast as possible</li><li>Empower the team</li><li>Build integrity in</li><li>See the whole</li></ul></div>
+                <div class="section"><h3 class="section-title">Waste Types</h3><p class="section-content">Partially done work, extra features, relearning, handoffs, delays, task switching, defects</p></div>
+                <div class="section"><h3 class="section-title">Learn More</h3><ul class="key-points"><li><a href="https://www.lean.org/" target="_blank" rel="noopener noreferrer">Lean Enterprise Institute</a></li><li><a href="https://www.agilealliance.org/agile101/lean-thinking/" target="_blank" rel="noopener noreferrer">Agile Alliance - Lean</a></li></ul></div>
+                <div class="pros-cons"><div class="pros"><h4>✅ Pros</h4><p>Efficiency focus, waste reduction, faster delivery</p></div><div class="cons"><h4>❌ Cons</h4><p>Can be too focused on speed, requires cultural change</p></div></div>
+            </div>
+            <!-- Crystal -->
+            <div class="methodology-card" data-method="crystal">
+                <div class="card-header"><h2 class="method-title"><span class="method-icon">C</span>Crystal</h2><p class="method-subtitle">Family of methodologies based on team size</p></div>
+                <div class="section"><h3 class="section-title">Crystal Variants</h3><ul class="key-points"><li>Crystal Clear (2-8 people)</li><li>Crystal Yellow (8-20 people)</li><li>Crystal Orange (20-40 people)</li><li>Crystal Red (40-80 people)</li></ul></div>
+                <div class="section"><h3 class="section-title">Core Properties</h3><p class="section-content">Frequent delivery, osmotic communication, reflective improvement, personal safety</p></div>
+                <div class="section"><h3 class="section-title">Focus Areas</h3><p class="section-content">People over processes, communication, regular delivery</p></div>
+                <div class="section"><h3 class="section-title">Learn More</h3><ul class="key-points"><li><a href="https://alistair.cockburn.us/crystal-clear-book/" target="_blank" rel="noopener noreferrer">Alistair Cockburn - Crystal</a></li><li><a href="https://www.agilealliance.org/agile101/crystal-family/" target="_blank" rel="noopener noreferrer">Agile Alliance - Crystal</a></li></ul></div>
+                <div class="pros-cons"><div class="pros"><h4>✅ Pros</h4><p>Flexible, scalable, people-focused</p></div><div class="cons"><h4>❌ Cons</h4><p>Less prescriptive, requires experience to implement</p></div></div>
+            </div>
+            <!-- Feature Driven Development -->
+            <div class="methodology-card" data-method="fdd">
+                <div class="card-header"><h2 class="method-title"><span class="method-icon">F</span>Feature Driven Development</h2><p class="method-subtitle">Model-driven, feature-centric approach</p></div>
+                <div class="section"><h3 class="section-title">5 Processes</h3><ul class="key-points"><li>Develop overall model</li><li>Build feature list</li><li>Plan by feature</li><li>Design by feature</li><li>Build by feature</li></ul></div>
+                <div class="section"><h3 class="section-title">Key Roles</h3><p class="section-content">Project Manager, Chief Architect, Development Manager, Chief Programmer, Class Owner</p></div>
+                <div class="section"><h3 class="section-title">Best Practices</h3><p class="section-content">Domain object modeling, developing by feature, component/class ownership</p></div>
+                <div class="section"><h3 class="section-title">Learn More</h3><ul class="key-points"><li><a href="https://www.agilealliance.org/glossary/fdd/" target="_blank" rel="noopener noreferrer">Agile Alliance - FDD</a></li><li><a href="https://www.featuredriven.org/" target="_blank" rel="noopener noreferrer">FeatureDriven.org (Community)</a></li></ul></div>
+                <div class="pros-cons"><div class="pros"><h4>✅ Pros</h4><p>Good for large teams, regular delivery, clear progress tracking</p></div><div class="cons"><h4>❌ Cons</h4><p>Less customer involvement, requires upfront modeling</p></div></div>
+            </div>
+            <!-- DSDM -->
+            <div class="methodology-card" data-method="dsdm">
+                <div class="card-header"><h2 class="method-title"><span class="method-icon">D</span>DSDM Atern</h2><p class="method-subtitle">Dynamic Systems Development Method</p></div>
+                <div class="section"><h3 class="section-title">8 Principles</h3><ul class="key-points"><li>Focus on business need</li><li>Deliver on time</li><li>Collaborate</li><li>Never compromise quality</li><li>Build incrementally</li><li>Develop iteratively</li><li>Communicate continuously</li><li>Demonstrate control</li></ul></div>
+                <div class="section"><h3 class="section-title">Project Phases</h3><p class="section-content">Pre-project, Feasibility, Foundations, Exploration, Engineering, Deployment, Post-project</p></div>
+                <div class="section"><h3 class="section-title">Learn More</h3><ul class="key-points"><li><a href="https://www.agilebusiness.org/page/whatisdsdm" target="_blank" rel="noopener noreferrer">Agile Business Consortium - DSDM</a></li></ul></div>
+                <div class="pros-cons"><div class="pros"><h4>✅ Pros</h4><p>Business-focused, time-boxed, quality emphasis</p></div><div class="cons"><h4>❌ Cons</h4><p>Complex framework, requires training, heavyweight</p></div></div>
+            </div>
+            <!-- Agile Unified Process -->
+            <div class="methodology-card" data-method="aup">
+                <div class="card-header"><h2 class="method-title"><span class="method-icon">A</span>Agile Unified Process</h2><p class="method-subtitle">Simplified version of Rational Unified Process</p></div>
+                <div class="section"><h3 class="section-title">4 Phases</h3><ul class="key-points"><li>Inception (scope & architecture)</li><li>Elaboration (detailed requirements)</li><li>Construction (build system)</li><li>Transition (deploy to users)</li></ul></div>
+                <div class="section"><h3 class="section-title">Key Disciplines</h3><p class="section-content">Modeling, Implementation, Testing, Deployment, Configuration Management, Project Management</p></div>
+                <div class="section"><h3 class="section-title">Agile Values</h3><p class="section-content">Staff knows what they're doing, simplicity, agility over ceremony</p></div>
+                <div class="section"><h3 class="section-title">Learn More</h3><ul class="key-points"><li><a href="http://www.ambysoft.com/unifiedprocess/agileUP.html" target="_blank" rel="noopener noreferrer">Scott Ambler - AUP</a></li></ul></div>
+                <div class="pros-cons"><div class="pros"><h4>✅ Pros</h4><p>Balance of discipline and agility, good documentation</p></div><div class="cons"><h4>❌ Cons</h4><p>Can be heavy, requires RUP knowledge</p></div></div>
+            </div>
+            <!-- SAFe -->
+            <div class="methodology-card" data-method="safe">
+                <div class="card-header"><h2 class="method-title"><span class="method-icon">SF</span>SAFe</h2><p class="method-subtitle">Scaled Agile Framework for enterprises</p></div>
+                <div class="section"><h3 class="section-title">Core Competencies</h3><ul class="key-points"><li>Lean-Agile Leadership</li><li>Team and Technical Agility</li><li>Agile Product Delivery</li><li>Enterprise Solution Delivery</li><li>Lean Portfolio Management</li><li>Organizational Agility</li><li>Continuous Learning Culture</li></ul></div>
+                <div class="section"><h3 class="section-title">Levels</h3><p class="section-content">Essential, Large Solution, Portfolio, Full SAFe</p></div>
+                <div class="section"><h3 class="section-title">Key Roles / Events</h3><p class="section-content">Release Train Engineer (RTE), Product Management, System Architect, PI Planning, System Demo, Inspect & Adapt</p></div>
+                <div class="section"><h3 class="section-title">Learn More</h3><ul class="key-points"><li><a href="https://www.scaledagileframework.com/" target="_blank" rel="noopener noreferrer">Scaled Agile Framework (Official)</a></li><li><a href="https://www.atlassian.com/agile/agile-at-scale/safe" target="_blank" rel="noopener noreferrer">Atlassian - SAFe</a></li></ul></div>
+                <div class="pros-cons"><div class="pros"><h4>✅ Pros</h4><p>Structured scaling, aligns strategy & execution, good for large orgs</p></div><div class="cons"><h4>❌ Cons</h4><p>Complex, prescriptive, high overhead, potential for "agile-fall"</p></div></div>
+            </div>
+        </div>
+
+        <div class="comparison-section" id="comparisonTableSection">
+            <div class="comparison-section-header">
+                <h2 class="comparison-section-title">Comparison Table</h2>
+                <div class="table-filters">
+                    <select id="filterTeamSize">
+                        <option value="">Filter by Team Size</option>
+                        <option value="Small (3-9)">Small (3-9)</option>
+                        <option value="Flexible">Flexible</option>
+                        <option value="Small (2-12)">Small (2-12)</option>
+                        <option value="Small to medium">Small to medium</option>
+                        <option value="Medium to large">Medium to large</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Large">Large</option>
+                    </select>
+                    <select id="filterIterationLength">
+                        <option value="">Filter by Iteration Length</option>
+                        <option value="2-4 weeks (Sprints)">2-4 weeks (Sprints)</option>
+                        <option value="Continuous">Continuous</option>
+                        <option value="1-3 weeks">1-3 weeks</option>
+                        <option value="Flexible">Flexible</option> <!-- Iteration Length can also be Flexible -->
+                        <option value="2 weeks">2 weeks</option>
+                        <option value="2-6 weeks">2-6 weeks</option>
+                        <option value="1-4 weeks">1-4 weeks</option>
+                        <option value="8-12 weeks (Program Increments)">8-12 weeks (Program Increments)</option>
+                    </select>
+                    <select id="filterScalability">
+                        <option value="">Filter by Scalability</option>
+                        <option value="Moderate (with frameworks like SAFe)">Moderate (with frameworks like SAFe)</option>
+                        <option value="High">High</option>
+                        <option value="Low">Low</option>
+                        <option value="Moderate">Moderate</option>
+                        <option value="Very High">Very High</option>
+                    </select>
+                    <button id="clearComparisonFilters">Clear Filters</button>
+                </div>
+            </div>
+            <div class="comparison-table-container">
+                <table class="comparison-table" id="mainComparisonTable">
+                    <thead>
+                        <tr>
+                            <th>Methodology</th>
+                            <th>Key Focus</th>
+                            <th>Team Size</th>
+                            <th>Iteration Length</th>
+                            <th>Key Practices</th>
+                            <th>Scalability</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Scrum</td>
+                            <td>Iterative development, team collaboration</td>
+                            <td>Small (3-9)</td>
+                            <td>2-4 weeks (Sprints)</td>
+                            <td>Daily standups, sprint planning, retrospectives</td>
+                            <td>Moderate (with frameworks like SAFe)</td>
+                        </tr>
+                        <tr>
+                            <td>Kanban</td>
+                            <td>Continuous flow, visualizing work</td>
+                            <td>Flexible</td>
+                            <td>Continuous</td>
+                            <td>Work-in-progress limits, Kanban board</td>
+                            <td>High</td>
+                        </tr>
+                        <tr>
+                            <td>Extreme Programming (XP)</td>
+                            <td>Code quality, customer collaboration</td>
+                            <td>Small (2-12)</td>
+                            <td>1-3 weeks</td>
+                            <td>Pair programming, TDD, continuous integration</td>
+                            <td>Low</td>
+                        </tr>
+                        <tr>
+                            <td>Lean</td>
+                            <td>Eliminate waste, deliver value</td>
+                            <td>Flexible</td>
+                            <td>Continuous</td>
+                            <td>Value stream mapping, just-in-time delivery</td>
+                            <td>High</td>
+                        </tr>
+                        <tr>
+                            <td>Crystal</td>
+                            <td>Team communication, adaptability</td>
+                            <td>Small to medium</td>
+                            <td>Flexible</td>
+                            <td>Frequent delivery, reflective improvement</td>
+                            <td>Moderate</td>
+                        </tr>
+                        <tr>
+                            <td>Feature-Driven Development (FDD)</td>
+                            <td>Feature-centric development</td>
+                            <td>Medium to large</td>
+                            <td>2 weeks</td>
+                            <td>Feature lists, regular builds</td>
+                            <td>High</td>
+                        </tr>
+                        <tr>
+                            <td>Dynamic Systems Development Method (DSDM)</td>
+                            <td>Timeboxed, business-driven</td>
+                            <td>Small to medium</td>
+                            <td>2-6 weeks</td>
+                            <td>MoSCoW prioritization, timeboxing</td>
+                            <td>Moderate</td>
+                        </tr>
+                        <tr>
+                            <td>Agile Unified Process (AUP)</td>
+                            <td>Simplified RUP, iterative</td>
+                            <td>Medium</td>
+                            <td>1-4 weeks</td>
+                            <td>Model-driven development, iterations</td>
+                            <td>Moderate</td>
+                        </tr>
+                        <tr>
+                            <td>Scaled Agile Framework (SAFe)</td>
+                            <td>Scaling Agile across enterprise</td>
+                            <td>Large</td>
+                            <td>8-12 weeks (Program Increments)</td>
+                            <td>ARTs, PI planning, lean portfolio</td>
+                            <td>Very High</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>💡 Quick reference for Agile practitioners • Use filters to find what you need</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const methodologyGrid = document.getElementById('methodologyGrid');
+            const comparisonSection = document.getElementById('comparisonTableSection');
+            const methodologyCards = document.querySelectorAll('.methodology-card');
+            const navButtons = document.querySelectorAll('.nav-btn');
+
+            // Comparison Table Filter Elements
+            const filterTeamSizeSelect = document.getElementById('filterTeamSize');
+            const filterIterationLengthSelect = document.getElementById('filterIterationLength');
+            const filterScalabilitySelect = document.getElementById('filterScalability');
+            const clearComparisonFiltersButton = document.getElementById('clearComparisonFilters');
+            const comparisonTableRows = document.querySelectorAll('#mainComparisonTable tbody tr');
+
+            function setActiveButton(activeButton) {
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                if (activeButton) {
+                    activeButton.classList.add('active');
+                }
+            }
+
+            function showSection(sectionType, filter = 'all') {
+                let activeBtn = null;
+                navButtons.forEach(btn => {
+                    if (btn.dataset.sectionType === sectionType) {
+                        if (sectionType === 'methodologies') {
+                            if (btn.dataset.filter === filter) {
+                                activeBtn = btn;
+                            }
+                        } else { 
+                            activeBtn = btn;
+                        }
+                    }
+                });
+                setActiveButton(activeBtn);
+
+                if (sectionType === 'methodologies') {
+                    if(methodologyGrid) methodologyGrid.style.display = 'grid';
+                    if (comparisonSection) comparisonSection.style.display = 'none';
+
+                    methodologyCards.forEach(card => {
+                        if (filter === 'all' || card.dataset.method === filter) {
+                            card.classList.remove('hidden');
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
+                    if(methodologyGrid) methodologyGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                } else if (sectionType === 'comparisonTable') {
+                    if(methodologyGrid) methodologyGrid.style.display = 'none';
+                    if (comparisonSection) {
+                        comparisonSection.style.display = 'block';
+                        applyComparisonTableFilters(); // Apply filters when table is shown
+                        comparisonSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            }
+
+            navButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const sectionType = this.dataset.sectionType;
+                    const filter = this.dataset.filter || 'all'; 
+                    showSection(sectionType, filter);
+                });
+            });
+
+            // --- Comparison Table Filtering Logic ---
+            function applyComparisonTableFilters() {
+                const teamSizeFilter = filterTeamSizeSelect.value;
+                const iterationLengthFilter = filterIterationLengthSelect.value;
+                const scalabilityFilter = filterScalabilitySelect.value;
+
+                comparisonTableRows.forEach(row => {
+                    const teamSizeCell = row.cells[2].textContent.trim();
+                    const iterationLengthCell = row.cells[3].textContent.trim();
+                    const scalabilityCell = row.cells[5].textContent.trim();
+
+                    let showRow = true;
+
+                    if (teamSizeFilter && teamSizeCell !== teamSizeFilter) {
+                        showRow = false;
+                    }
+                    if (iterationLengthFilter && iterationLengthCell !== iterationLengthFilter) {
+                        showRow = false;
+                    }
+                    if (scalabilityFilter && scalabilityCell !== scalabilityFilter) {
+                        showRow = false;
+                    }
+
+                    if (showRow) {
+                        row.classList.remove('hidden-row');
+                    } else {
+                        row.classList.add('hidden-row');
+                    }
+                });
+            }
+
+            if(filterTeamSizeSelect) filterTeamSizeSelect.addEventListener('change', applyComparisonTableFilters);
+            if(filterIterationLengthSelect) filterIterationLengthSelect.addEventListener('change', applyComparisonTableFilters);
+            if(filterScalabilitySelect) filterScalabilitySelect.addEventListener('change', applyComparisonTableFilters);
+
+            if(clearComparisonFiltersButton) {
+                clearComparisonFiltersButton.addEventListener('click', () => {
+                    filterTeamSizeSelect.value = "";
+                    filterIterationLengthSelect.value = "";
+                    filterScalabilitySelect.value = "";
+                    applyComparisonTableFilters(); // This will show all rows
+                });
+            }
+
+            // Initial setup
+            if (comparisonSection) comparisonSection.style.display = 'none';
+            showSection('methodologies', 'all'); 
+        });
+    </script>
+</body>
+</html>
